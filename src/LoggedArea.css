@@ -1,0 +1,53 @@
+/* No arquivo App.css */
+
+/* Estilo dos Cards */
+.card {
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+  }
+  
+  /* Barra de Pesquisa */
+  .form-control {
+    border-color: #333;
+  }
+  
+  /* Título Principal */
+  h1 {
+    font-size: 28px;
+    margin-top: 20px;
+  }
+  
+  /* Botões (exemplo) */
+  .btn {
+    /* background-color: #333; */
+    color: #fff;
+  }
+  
+  
+  .btn-time {
+    background-color: #fff;
+    border: 1px solid #007bff;
+    color: #007bff;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .btn-selected {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: #fff;
+  }
+  
+  
