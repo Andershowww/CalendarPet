@@ -1,7 +1,7 @@
 
 import React from "react"
 import InputMask from 'react-input-mask';
-import { useHistory } from 'react-router-dom';
+
 
 function Auth (props) {
     return (
