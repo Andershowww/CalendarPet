@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/CalendarPet/static/css/main.073c9b0a.css",
+    "main.js": "/CalendarPet/static/js/main.d81f8bd6.js",
+    "static/js/787.902993c8.chunk.js": "/CalendarPet/static/js/787.902993c8.chunk.js",
+    "static/media/logo.svg": "/CalendarPet/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/CalendarPet/index.html",
+    "main.073c9b0a.css.map": "/CalendarPet/static/css/main.073c9b0a.css.map",
+    "main.d81f8bd6.js.map": "/CalendarPet/static/js/main.d81f8bd6.js.map",
+    "787.902993c8.chunk.js.map": "/CalendarPet/static/js/787.902993c8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.d81f8bd6.js"
+  ]
+}
