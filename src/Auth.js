@@ -1,7 +1,7 @@
 
 import React from "react"
 import InputMask from 'react-input-mask';
-
+import { Link } from 'react-router-dom';
 
 function Auth (props) {
     return (
@@ -16,6 +16,7 @@ function Auth (props) {
                             maskChar="_" // Caractere de espaço em branco na máscara
                             className="form-control mt-1"
                             placeholder="Insira seu CPF"
+                            required="true"
                         />
                     </div>
                     <div className="form-group mt-3">
@@ -27,9 +28,9 @@ function Auth (props) {
                         />
                     </div>
                     <div className="d-grid gap-2 mt-3">
-                        <button type="submit" className="btn btn-primary">
-                            Entrar
-                        </button>
+                    <Link to="/logged" className="btn btn-primary">Entrar</Link>
+
+
                     </div>
                     <p className="forgot-password text-right mt-2">
                         Ainda não é cadastrado?  <a href="#">Cadastre-se</a>
