@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Auth(props) {
   const [mensagemErro, setMensagemErro] = useState('');
-
+  const navigate = useNavigate();
   function handleLoginSubmit(e) {
     e.preventDefault();
     const usuario = e.target.elements.usuario.value;
@@ -12,7 +12,7 @@ function Auth(props) {
 
     if (validarUsuario(usuario, senha)) {
       // Validação bem-sucedida, redirecione para a área logada
-      props.history.push('/LoggedArea');
+      navigate('/logged');
     } else {
       // Validação falhou, exiba uma mensagem de erro
       setMensagemErro('Usuário ou senha incorretos');
