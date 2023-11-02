@@ -5,28 +5,48 @@ import { useNavigate } from 'react-router-dom';
 function Auth(props) {
   const [mensagemErro, setMensagemErro] = useState('');
   const navigate = useNavigate();
-  function handleLoginSubmit(e) {
+  const handleLoginSubmit = async(e) =>{
+   
     e.preventDefault();
-    const usuario = e.target.elements.usuario.value;
-    const senha = e.target.elements.senha.value;
+    const apiUrl = 'https://localhost:44358/api/Login'
+    const CPF = e.target.elements.usuario.value;
+    const Senha = e.target.elements.senha.value;
 
-    if (validarUsuario(usuario, senha)) {
+    if (validarUsuario(CPF, Senha)) {
       // Validação bem-sucedida, redirecione para a área logada
-      navigate('/logged');
+     
     } else {
       // Validação falhou, exiba uma mensagem de erro
       setMensagemErro('Usuário ou senha incorretos');
     }
-  }
+  
 
-  function validarUsuario(usuario, senha) {
+  async function validarUsuario(CPF, Senha) {
     // Substitua isso com a lógica real de validação, como consultar um banco de dados
-    const usuarioValido = '045.262.930-67';
-    const senhaValida = 'senha';
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({  CPF, Senha }),
+      });
 
-    return usuario === usuarioValido && senha === senhaValida;
+      if (response.ok) {
+        const userData = await response;
+        if(userData===true)
+        navigate('/logged');
+        // setLoggedInUser(userData); // Define o usuário logado
+        setMensagemErro('');
+        // Você pode redirecionar o usuário para a próxima página aqui
+      } else {
+        setMensagemErro('Usuário ou senha incorretos');
+      }
+    } catch (error) {
+      setMensagemErro('Ocorreu um erro ao tentar fazer login');
+    }
   }
-
+  };
   return (
     <div className="Auth-form-container">
       <form className="Auth-form" onSubmit={handleLoginSubmit}>
