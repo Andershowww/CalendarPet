@@ -33,11 +33,14 @@ function Auth(props) {
       });
 
       if (response.ok) {
-        const userData = await response;
-        if(userData===true)
+        const userData = await response.json();
+        if(userData>0){
         navigate('/logged');
         // setLoggedInUser(userData); // Define o usuário logado
-        setMensagemErro('');
+        setMensagemErro('');}
+        else {
+          setMensagemErro('Usuário ou senha incorretos');
+        }
         // Você pode redirecionar o usuário para a próxima página aqui
       } else {
         setMensagemErro('Usuário ou senha incorretos');
