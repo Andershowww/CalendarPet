@@ -46,7 +46,7 @@ function Auth(props) {
         setMensagemErro('Usuário ou senha incorretos');
       }
     } catch (error) {
-      setMensagemErro('Ocorreu um erro ao tentar fazer login');
+      setMensagemErro('Ocorreu um erro ao tentar fazer login'+ error);
     }
   }
   };
