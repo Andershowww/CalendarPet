@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Auth(props) {
   const [mensagemErro, setMensagemErro] = useState('');
@@ -24,21 +25,18 @@ function Auth(props) {
   async function validarUsuario(CPF, Senha) {
     // Substitua isso com a lógica real de validação, como consultar um banco de dados
     try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({  CPF, Senha }),
+      const response = await axios.post(apiUrl, {
+        CPF,
+        Senha
       });
-
-      if (response.ok) {
-        const userData = await response.json();
-        if(userData>0){
-        navigate('/logged');
-        // setLoggedInUser(userData); // Define o usuário logado
-        setMensagemErro('');}
-        else {
+    
+      if (response.status === 200) {
+        const userData = response.data;
+        if (userData > 0) {
+          navigate('/logged');
+          // setLoggedInUser(userData); // Define o usuário logado
+          setMensagemErro('');
+        } else {
           setMensagemErro('Usuário ou senha incorretos');
         }
         // Você pode redirecionar o usuário para a próxima página aqui
@@ -46,7 +44,16 @@ function Auth(props) {
         setMensagemErro('Usuário ou senha incorretos');
       }
     } catch (error) {
-      setMensagemErro('Ocorreu um erro ao tentar fazer login'+ error);
+      if (error.response) {
+        // O servidor respondeu com um código de erro
+        setMensagemErro(`Erro ${error.response.status}: ${error.response.data}`);
+      } else if (error.request) {
+        // A solicitação foi feita, mas não houve resposta do servidor
+        setMensagemErro('Sem resposta do servidor. Verifique sua conexão de rede.');
+      } else {
+        // Ocorreu um erro antes de fazer a solicitação, como um erro de configuração do Axios
+        setMensagemErro(`Erro na solicitação: ${error.message}`);
+      }
     }
   }
   };
