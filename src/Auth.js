@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Cookies } from 'react-cookie';
 
-function Auth(props) {
+function Auth(props) { 
+  const cookies = new Cookies();
+  const [authToken, setAuthToken] = useState(cookies.get('authToken') || '');
   const [mensagemErro, setMensagemErro] = useState('');
   const navigate = useNavigate();
+ 
   const handleLoginSubmit = async(e) =>{
    
     e.preventDefault();
@@ -33,6 +37,9 @@ function Auth(props) {
       if (response.status === 200) {
         const userData = response.data;
         if (userData > 0) {
+          const fakeToken = userData;
+         setAuthToken(fakeToken);
+         cookies.set('authToken', fakeToken, { path: '/' });
           navigate('/logged');
           // setLoggedInUser(userData); // Define o usuário logado
           setMensagemErro('');

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importe o CSS do Bootstrap
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import './LoggedArea.css'; // Você pode criar seu próprio arquivo CSS para personalização
 
 function LoggedArea() {
@@ -31,7 +32,7 @@ function LoggedArea() {
 
   // Estado para controlar se o card está aberto ou fechado
   const [cardOpen, setCardOpen] = useState(false);
-
+  const [submenuOpen, setSubmenuOpen] = useState(false);
   // Função para lidar com o clique no botão "Ver Horários Disponíveis"
   const handleShowTimes = (index) => {
     // Se o mesmo botão for clicado novamente, feche o card
@@ -48,7 +49,21 @@ function LoggedArea() {
     setSelectedButton(null);
     setShowConfirmation(false);
   };
+  // Função para lidar com o clique no botão do submenu
+  const handleSubmenuToggle = () => {
+    setSubmenuOpen(!submenuOpen);
+  };
 
+  // Função para lidar com o clique em "Meu Cadastro"
+  const handleMyProfileClick = () => {
+    // Implemente a navegação para a página de perfil do usuário
+    alert('Navegar para a página de perfil do usuário');
+  };
+   // Função para lidar com o clique em "Sair"
+  const handleLogoutClick = () => {
+    // Implemente a lógica de logout aqui
+    alert('Usuário deslogado');
+  };
   // Função para lidar com o clique em um horário disponível
   const handleTimeClick = (time) => {
     setSelectedTime(time);
@@ -138,42 +153,54 @@ function LoggedArea() {
 
   return (
     <div className="LoggedArea">
-      {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-          <a className="navbar-brand" href="#">
-            PetShop
-          </a>
-          {/* Centralize a barra de pesquisa */}
-          <div className="mx-auto">
-            <form className="form-inline my-2 my-lg-0">
-              <div className="input-group">
-                <input
-                  className="form-control"
-                  type="search"
-                  placeholder="Pesquisar"
-                  aria-label="Pesquisar"
-                />
-                <div className="input-group-append">
-                  <button
-                    className="btn btn-outline-success"
-                    type="submit"
-                  >
-                    Pesquisar
-                  </button>
-                </div>
+    {/* Navbar */}
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <a className="navbar-brand" href="#">
+          PetShop
+        </a>
+      
+        {/* Centralize a barra de pesquisa */}
+        <div className="mx-auto">
+          <form className="form-inline my-2 my-lg-0">
+            <div className="input-group">
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Pesquisar"
+                aria-label="Pesquisar"
+              />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-success"
+                  type="submit"
+                >
+                  Pesquisar
+                </button>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
-      </nav>
-
-      {/* Conteúdo principal */}
-      <div className="container my-5">
-        <h1>Serviços Disponíveis</h1>
-        <div className="row">{renderServiceCards()}</div>
+        <NavDropdown title="Opcões" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Meus Dados</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+               Sair
+              </NavDropdown.Item>
+              {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item> */}
+            </NavDropdown>
       </div>
+    </nav>
+
+    {/* Conteúdo principal */}
+    <div className="container my-5">
+      <h1>Serviços Disponíveis</h1>
+      <div className="row">{renderServiceCards()}</div>
     </div>
+  </div>
   );
 }
 
