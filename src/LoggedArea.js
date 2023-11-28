@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importe o CSS do Bootstrap
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './LoggedArea.css'; // Você pode criar seu próprio arquivo CSS para personalização
+import axios from 'axios';
 
 function LoggedArea() {
   // Dados de exemplo para os serviços
@@ -75,8 +76,28 @@ function LoggedArea() {
 
   // Função para lidar com o clique no botão de confirmação
   const handleConfirmation = () => {
-    // Implemente a lógica de confirmação do agendamento aqui
-    alert(`Agendamento confirmado para ${selectedTime}`);
+const Agenda={
+  AgendaID:0,
+  IDAnimal:2,
+  IDHorario:1,
+  AtualizadoSistema:false,
+  IDEmpresa:1,
+  IDServicoCategoria:1
+}
+
+axios.post('https://localhost:44358/api/v1/Agenda/cadagenda', Agenda)
+.then(response => {
+  // Lógica para lidar com a resposta da API (se necessário)
+  console.log('Resposta da API:', response.data);
+  alert(`Agendamento confirmado para ${selectedTime}`);
+})
+.catch(error => {
+  // Lógica para lidar com erros na solicitação
+  console.error('Erro ao confirmar agendamento:', error);
+  alert('Erro ao confirmar agendamento. Por favor, tente novamente.');
+});
+
+ 
   };
 
   // Função para lidar com a mudança de data

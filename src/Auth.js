@@ -13,7 +13,7 @@ function Auth(props) {
   const handleLoginSubmit = async(e) =>{
    
     e.preventDefault();
-    const apiUrl = 'https://localhost:44358/api/Login'
+    const apiUrl = 'https://localhost:44358/api/v1/Login'
     const CPF = e.target.elements.usuario.value;
     const Senha = e.target.elements.senha.value;
 
