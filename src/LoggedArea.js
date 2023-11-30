@@ -114,8 +114,8 @@ function LoggedArea() {
                   Escolha um animal
                 </option>
                 {/* Adicione as opções de animais aqui */}
-                <option value="1">Animal 1</option>
-                <option value="2">Animal 2</option>
+                <option value="1">Rex</option>
+                <option value="2">Amora</option>
                 {/* Adicione mais opções conforme necessário */}
               </select>
             </div>
